@@ -26,9 +26,20 @@ def avg_rgb(list_rgb):
     new_rgb = []
     for i in range(0, len(list_rgb)):
         tmp_avg = np.array([vector[i] for block in list_rgb for vector in block]).mean()
-        print(tmp_avg)
         new_rgb.append(tmp_avg)
     return np.array(new_rgb).round()
+
+
+def avg_rgb_vec(np_block):
+    # accommodates standard numpy arrays
+    np_block = np_block.reshape(-1, np_block.shape[-1])
+    print('flattened:', np_block)
+    new_rgb = []
+    for i in range(0, 3):
+        tmp_value = np.array([vector[i] for vector in np_block]).mean().round()
+        print(tmp_value)
+        new_rgb.append(tmp_value)
+    return new_rgb
 
 
 # get_block() returns a block of size mxm except where start_row and start_col
